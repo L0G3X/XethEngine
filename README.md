@@ -1,4 +1,4 @@
-# XethEngine [je:t enjin]
+# XethEngine [dƷet endƷɪn]
 This engine's base SDK is Direct2D.
 
 ## About Physical Engine
