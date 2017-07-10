@@ -23,14 +23,14 @@ bool SampleApplication::Initialize() {
 	try {
 		SetMouseButtonEvent();	
 		bg = new CSprite(L"bg.jpg", Point(winsize.X / 2, winsize.Y / 2));
-		bg->SetImage(GetRenderTarget(), GetImageFactory(), CApplication::World);
+		bg->SetImage(GetRenderTarget(), GetImageFactory());
 
 		spr = new CSprite(L"c.png", Point(winsize.X / 2, winsize.Y / 2));
-		spr->SetImage(GetRenderTarget(), GetImageFactory(), CApplication::World);
+		spr->SetImage(GetRenderTarget(), GetImageFactory());
 		spr->SetScale(0.05f, 0.05f);
 
 		tex = new CSprite(L"texture.jpg", spr->GetPosition());
-		tex->SetImage(GetRenderTarget(), GetImageFactory(), CApplication::World);
+		tex->SetImage(GetRenderTarget(), GetImageFactory());
 
 		str = L"HelloWorld\nBeep!";
 

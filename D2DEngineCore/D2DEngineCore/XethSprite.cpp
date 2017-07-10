@@ -10,7 +10,7 @@ void CSprite::Release() {
 	SafeRelease(m_bitmap);
 }
 
-void CSprite::SetImage(ID2D1RenderTarget * target, IWICImagingFactory * factory, b2World  * world) {
+void CSprite::SetImage(ID2D1RenderTarget * target, IWICImagingFactory * factory) {
 	HRESULT hr;
 	IWICBitmapDecoder *decoder = 0;
 	hr = factory->CreateDecoderFromFilename(m_file_name, 0, GENERIC_READ, WICDecodeMetadataCacheOnDemand, &decoder);
@@ -51,18 +51,6 @@ void CSprite::SetImage(ID2D1RenderTarget * target, IWICImagingFactory * factory,
 	decoder->Release();
 	frame_decode->Release();
 	converter->Release();
-
-	SpriteBoxDef.type = b2_dynamicBody;
-	SpriteBoxDef.position.Set(GetPosition().X, GetPosition().Y);
-	body = world->CreateBody(&SpriteBoxDef);
-
-	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(GetBitmap()->GetSize().width / 2, GetBitmap()->GetSize().height / 2);
-
-	FixtureDef.shape = &dynamicBox;
-	FixtureDef.density = 1.f;
-	FixtureDef.friction = 1.f;
-	body->CreateFixture(&FixtureDef);
 }
 
 ID2D1Bitmap* CSprite::GetBitmap() {

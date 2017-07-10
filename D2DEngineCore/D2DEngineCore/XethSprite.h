@@ -8,7 +8,7 @@ namespace Xeth {
 		CSprite(wchar_t* file_name, Xeth::Point point);
 		void Release();
 
-		void SetImage(ID2D1RenderTarget *target, IWICImagingFactory *factory, b2World * world);
+		void SetImage(ID2D1RenderTarget *target, IWICImagingFactory *factory);
 
 		ID2D1Bitmap* GetBitmap();
 		D2D1_RECT_F GetRect();
@@ -25,10 +25,6 @@ namespace Xeth {
 		Xeth::Point m_scale;
 		float m_rotation;
 		wchar_t* m_file_name;
-
-		b2BodyDef SpriteBoxDef;
-		b2Body* body;
-		b2FixtureDef FixtureDef;
 	};
 }
 

@@ -50,7 +50,7 @@ void CApplication::InitializeDWrite(LPCWSTR font, float size) {
 	}
 }
 
-CApplication::CApplication(float width, float height, wchar_t title_text[]) : m_window_size(width, height), World(b2Vec2(0.0f,0.0f)) {
+CApplication::CApplication(float width, float height, wchar_t title_text[]) : m_window_size(width, height) {
 	lstrcpyW(title, title_text);
 }
 
@@ -102,18 +102,6 @@ void CApplication::InitializeWindow() {
 		CleanD2DElements();
 		throw std::exception(e.what());
 	}
-
-	Gravity = b2Vec2(0.0f, -10.0f);
-	World = b2World(Gravity);
-
-	b2BodyDef GroundDef;
-	GroundDef.position.Set(0.0f, -10.0f);
-	GroundBody = World.CreateBody(&GroundDef);
-
-	b2PolygonShape GroundBox;
-	GroundBox.SetAsBox(50.f, 10.f);
-
-	GroundBody->CreateFixture(&GroundBox, 0.0f);
 	
 	m_hinstance = &hInstance;
 	instance = this;

@@ -14,7 +14,6 @@
 #pragma comment(lib, "dwrite.lib")
 #pragma comment(lib, "Strmiids.lib")
 #pragma comment(lib, "Quartz.lib")
-#pragma comment(lib, "Box2D.lib")
 
 #pragma once
 

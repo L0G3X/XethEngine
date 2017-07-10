@@ -7,7 +7,6 @@
 #include <exception>
 #include <iostream>
 #include <unordered_map>
-#include <Box2D/Box2D.h>
 
 #pragma comment(lib, "windowscodecs.lib")
 #pragma comment(lib, "d2d1.lib")
@@ -15,7 +14,6 @@
 #pragma comment(lib, "dwrite.lib")
 #pragma comment(lib, "Strmiids.lib")
 #pragma comment(lib, "Quartz.lib")
-#pragma comment(lib, "Box2D.lib")
 
 #pragma once
 

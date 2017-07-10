@@ -43,11 +43,7 @@ namespace Xeth {
 		static FuncPTR MouseLButtonUpEvent;
 		static FuncPTR MouseRButtonUpEvent;
 
-		b2Vec2 Gravity;
-		b2Body* GroundBody;
-
 	protected:
-		b2World World;
 
 		virtual bool Initialize() = 0;
 		virtual void Display(DWORD delta_time) = 0;
