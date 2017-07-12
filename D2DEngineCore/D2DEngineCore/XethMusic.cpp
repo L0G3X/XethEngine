@@ -72,17 +72,19 @@ void CMusic::Pause() {
 	}
 }
 
-void CMusic::SetVolume(float volume) {
+void CMusic::SetVolume(int volume) {
+	this->volume = volume;
 	HRESULT hr;
-	hr = m_volume->put_Volume(static_cast<long>(100 * volume - 10000));
+	hr = m_volume->put_Volume(static_cast<long>(100 * this->volume - 10000));
 	if(FAILED(hr)) {
 		throw std::exception("Failed to Set Volume");
 	}
 }
 
-void CMusic::SetBalance(float balance) {
+void CMusic::SetBalance(int balance) {
+	this->balance = balance;
 	HRESULT hr;
-	hr = m_volume->put_Balance(static_cast<long>(100 * balance));
+	hr = m_volume->put_Balance(static_cast<long>(100 * this->balance));
 	if(FAILED(hr)) {
 		throw std::exception("Failed to Set Balance");
 	}

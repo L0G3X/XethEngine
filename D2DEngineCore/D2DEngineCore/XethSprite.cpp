@@ -10,17 +10,17 @@ void CSprite::Release() {
 	SafeRelease(m_bitmap);
 }
 
-void CSprite::SetImage(ID2D1RenderTarget * target, IWICImagingFactory * factory) {
+void CSprite::SetImage(ID2D1RenderTarget * _target, IWICImagingFactory * _factory) {
 	HRESULT hr;
-	IWICBitmapDecoder *decoder = 0;
-	hr = factory->CreateDecoderFromFilename(m_file_name, 0, GENERIC_READ, WICDecodeMetadataCacheOnDemand, &decoder);
+	IWICBitmapDecoder *decoder = nullptr;
+	hr = _factory->CreateDecoderFromFilename(m_file_name, 0, GENERIC_READ, WICDecodeMetadataCacheOnDemand, &decoder);
 	if(FAILED(hr) || decoder == NULL) {
 		char buffer[128];
 		FileNotExist(buffer, m_file_name);
 		throw std::exception(buffer);
 	}
 
-	IWICBitmapFrameDecode* frame_decode = 0;
+	IWICBitmapFrameDecode* frame_decode = nullptr;
 
 	hr = decoder->GetFrame(0, &frame_decode);
 	if(FAILED(hr) || frame_decode == NULL) {
@@ -28,8 +28,8 @@ void CSprite::SetImage(ID2D1RenderTarget * target, IWICImagingFactory * factory)
 		throw std::exception("Failed to initialize IWICBitmapFrameDecoder");
 	}
 
-	IWICFormatConverter* converter = 0;
-	hr = factory->CreateFormatConverter(&converter);
+	IWICFormatConverter* converter = nullptr;
+	hr = _factory->CreateFormatConverter(&converter);
 	if(FAILED(hr) || converter == NULL) {
 		decoder->Release();
 		throw std::exception("Failed to create IWICFormatConverter");
@@ -43,7 +43,7 @@ void CSprite::SetImage(ID2D1RenderTarget * target, IWICImagingFactory * factory)
 		throw std::exception("Failed to initialize IWICFormatConverter");
 	}
 
-	hr = target->CreateBitmapFromWicBitmap(converter, 0, &m_bitmap);
+	hr = _target->CreateBitmapFromWicBitmap(converter, 0, &m_bitmap);
 	if(FAILED(hr)) {
 		throw std::exception("Failed to create Bitmap");
 	}
@@ -71,13 +71,16 @@ Point CSprite::GetScale() {
 	return m_scale;
 }
 
-void CSprite::SetRotation(float setha) {
-	m_rotation = setha;
+void CSprite::SetRotation(float _rot) {
+	m_rotation = _rot;
 }
 
 void CSprite::SetPosition(float _x, float _y) {
-	this->m_pos.X = _x;
-	this->m_pos.Y = _y;
+	this->m_pos = Point{ _x, _y };
+}
+
+void Xeth::CSprite::SetPosition(Point _pos) {
+	this->m_pos = _pos;
 }
 
 Point CSprite::GetPosition() {

@@ -11,8 +11,11 @@ namespace Xeth {
 		void Run();
 		void Stop();
 		void Pause();
-		void SetVolume(float volume);
-		void SetBalance(float balance);
+		void SetVolume(int volume);
+		void SetBalance(int balance);
+		
+		inline int GetVolume()	{ return volume; }
+		inline int GetBalance() { return balance; }
 
 	private:
 		IBasicAudio* m_volume;
@@ -20,5 +23,8 @@ namespace Xeth {
 		IGraphBuilder* m_graph;
 		IMediaControl* m_control;
 		IMediaEvent* m_event;
+
+		int volume;
+		int balance;
 	};
 }

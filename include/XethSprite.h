@@ -8,15 +8,17 @@ namespace Xeth {
 		CSprite(wchar_t* file_name, Xeth::Point point);
 		void Release();
 
-		void SetImage(ID2D1RenderTarget *target, IWICImagingFactory *factory);
+		void SetImage(ID2D1RenderTarget * _target, IWICImagingFactory * _factory);
 
 		ID2D1Bitmap* GetBitmap();
 		D2D1_RECT_F GetRect();
 		void SetPosition(float _x, float _y);
+		void SetPosition(Point _pos);
 		Point GetPosition();
 		void SetScale(float _x, float _y);
 		Point GetScale();
-		void SetRotation(float setha);
+		void SetRotation(float _rot);
+		inline float GetRotation() { return m_rotation; }
 
 	private:
 		ID2D1Bitmap* m_bitmap;

@@ -16,14 +16,12 @@ public:
 
 // Override Functions
 private:
-	bool Xeth::CApplication::Initialize();
-	void Xeth::CApplication::Display(DWORD delta_time);
-	void Xeth::CApplication::Clean();
+	bool Initialize();
+	void Display(DWORD delta_time);
+	void Clean();
+
 	void MouseLButtonDown();
 	void MouseLButtonUp();
-
-private:
-	void SetMouseButtonEvent();
 
 private:
 	Xeth::CSprite* spr;
@@ -49,6 +47,6 @@ private:
 
 	float rotation;
 
-	bool run_music;
+	bool music_button_click;
 	bool isMusicRunning;
 };

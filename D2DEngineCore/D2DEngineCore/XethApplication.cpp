@@ -12,6 +12,10 @@ CApplication::FuncPTR CApplication::MouseLButtonDownEvent;
 CApplication::FuncPTR CApplication::MouseLButtonUpEvent;
 CApplication::FuncPTR CApplication::MouseRButtonDownEvent;
 CApplication::FuncPTR CApplication::MouseRButtonUpEvent;
+BOOL CApplication::MouseLDownSet;
+BOOL CApplication::MouseRDownSet;
+BOOL CApplication::MouseLUpSet;
+BOOL CApplication::MouseRUpSet;
 #pragma endregion
 
 void CApplication::InitializeD2D(HWND hWnd, int width, int height, ID2D1Factory ** factory, ID2D1HwndRenderTarget ** rt) {
@@ -43,10 +47,7 @@ void CApplication::InitializeDWrite(LPCWSTR font, float size) {
 		throw std::exception("Failed to create DWrite Factory");
 	}
 	else {
-		hr = m_write_factory->CreateTextFormat(font, 0, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"ko", &m_write_format);
-		if(FAILED(hr)) {
-			throw std::exception("Failed to Create Text Format");
-		}
+		SetFont(font, size);
 	}
 }
 
@@ -86,7 +87,7 @@ void CApplication::InitializeWindow() {
 		InitializeD2D(hWnd, static_cast<int>(m_window_size.X), static_cast<int>(m_window_size.Y), &m_factory, &m_render_target);
 
 		InitializeWIC(&m_image_factory);
-		InitializeDWrite(L"±Ã¼­", 40.0f);
+		InitializeDWrite(L"D2Coding", 40.0f);
 		m_render_target->BeginDraw();
 		if(!Initialize()) {
 			throw std::exception("Failed to initialize");
@@ -118,7 +119,7 @@ void CApplication::Loop() {
 		}
 		else {
 			m_render_target->BeginDraw();
-			DWORD current = timeGetTime();
+			auto current = timeGetTime();
 
 			GetRenderTarget()->Clear();
 			Display(current - last);
@@ -158,15 +159,23 @@ LRESULT CApplication::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			mousePos = Point(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 			return 0;
 		case WM_LBUTTONDOWN:
+			if (MouseRDownSet != TRUE)
+				SetMouseLButtonDownEvent();
 			(instance->*MouseLButtonDownEvent)();
 			return 0;
 		case WM_LBUTTONUP:
+			if (MouseLUpSet != TRUE)
+				SetMouseLButtonUpEvent();
 			(instance->*MouseLButtonUpEvent)();
 			return 0;
 		case WM_RBUTTONDOWN:
+			if (MouseRDownSet != TRUE)
+				SetMouseRButtonDownEvent();
 			(instance->*MouseRButtonDownEvent)();
 			return 0;
 		case WM_RBUTTONUP:
+			if (MouseRUpSet != TRUE)
+				SetMouseRButtonUpEvent();
 			(instance->*MouseRButtonUpEvent)();
 			return 0;
 	}
@@ -174,12 +183,25 @@ LRESULT CApplication::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 }
 
 void Xeth::CApplication::DrawSprite(Xeth::CSprite* spr) {
+	spr->GetRotation() == 0.f ? DrawUnRotatedSprite(spr) : DrawRotatedSprite(spr);
+}
+
+void Xeth::CApplication::SetFont(LPCWSTR font, int size)
+{
+	HRESULT hr = m_write_factory->CreateTextFormat(font, 0, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, size, L"ko", &m_write_format);
+	if (FAILED(hr)) {
+		throw std::exception("Failed to Create Text Format");
+	}
+}
+
+void Xeth::CApplication::DrawUnRotatedSprite(Xeth::CSprite * spr)
+{
 	GetRenderTarget()->DrawBitmap(spr->GetBitmap(), spr->GetRect());
 }
 
-void Xeth::CApplication::DrawSprite(Xeth::CSprite* spr, float rot) {
-	GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Rotation(rot, D2D1::Point2F(spr->GetPosition().X, spr->GetPosition().Y)));
-	DrawSprite(spr);
+ void Xeth::CApplication::DrawRotatedSprite(Xeth::CSprite* spr) {
+	GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Rotation(spr->GetRotation(), D2D1::Point2F(spr->GetPosition().X, spr->GetPosition().Y)));
+	DrawUnRotatedSprite(spr);
 	GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Rotation(0.f, D2D1::Point2F(GetWinSize().X / 2, GetWinSize().Y / 2)));
 }
 
