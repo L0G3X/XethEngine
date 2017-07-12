@@ -32,13 +32,13 @@ namespace Xeth {
 		static inline void SetMouseRButtonUpEvent() { MouseRButtonUpEvent = &CApplication::MouseRButtonUp; MouseRUpSet = TRUE; }
 
 	protected:
-		virtual bool Initialize()						{ return true; }
-		virtual void Display(DWORD delta_time)			{	}
-		virtual void Clean()							{	}
-		virtual void MouseLButtonDown()					{	}
-		virtual void MouseRButtonDown()					{	}
-		virtual void MouseLButtonUp()					{	}
-		virtual void MouseRButtonUp()					{	}
+		virtual bool Initialize() { return true; }
+		virtual void Display(DWORD delta_time) {	}
+		virtual void Clean() {	}
+		virtual void MouseLButtonDown() {	}
+		virtual void MouseRButtonDown() {	}
+		virtual void MouseLButtonUp() {	}
+		virtual void MouseRButtonUp() {	}
 
 	protected:
 		void DrawSprite(CSprite* spr);
@@ -46,14 +46,14 @@ namespace Xeth {
 		void PrintText(wchar_t* msg, D2D1_RECT_F rect, ID2D1SolidColorBrush* brush);
 
 	protected:
-		inline ID2D1Factory*			GetFactory()				{ return m_factory; }
-		inline ID2D1HwndRenderTarget*	GetRenderTarget()			{ return m_render_target; }
-		inline IWICImagingFactory*		GetImageFactory()			{ return m_image_factory; }
-		inline IDWriteTextFormat*		GetTextFormat()				{ return m_write_format; }
-		inline HWND*					GetHWND()					{ return m_hwnd; }
-		inline Point					GetWinSize()				{ return m_window_size; }
-		inline Point					GetMousePosition()			{ return mousePos; }
-		inline bool						GetKeyStatus(WPARAM key)	{ return keys[key]; }
+		inline ID2D1Factory*			GetFactory() { return m_factory; }
+		inline ID2D1HwndRenderTarget*	GetRenderTarget() { return m_render_target; }
+		inline IWICImagingFactory*		GetImageFactory() { return m_image_factory; }
+		inline IDWriteTextFormat*		GetTextFormat() { return m_write_format; }
+		inline HWND*					GetHWND() { return m_hwnd; }
+		inline Point					GetWinSize() { return m_window_size; }
+		inline Point					GetMousePosition() { return mousePos; }
+		inline bool						GetKeyStatus(WPARAM key) { return keys[key]; }
 
 	private:
 		typedef void(CApplication::*FuncPTR)(void);
@@ -84,5 +84,6 @@ namespace Xeth {
 		static BOOL		MouseRDownSet;
 		static BOOL		MouseLUpSet;
 		static BOOL		MouseRUpSet;
+
 	};
 }

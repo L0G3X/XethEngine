@@ -14,15 +14,12 @@ void SampleApplication::Run() {
 
 bool SampleApplication::Initialize() {
 	try {
-		bg = new CSprite(L"bg.jpg", Point(winsize.X / 2, winsize.Y / 2));
-		bg->SetImage(GetRenderTarget(), GetImageFactory());
+		bg = new CSprite(L"bg.jpg", Point(winsize.X / 2, winsize.Y / 2), GetImageFactory(), GetRenderTarget());
 
-		spr = new CSprite(L"c.png", Point(winsize.X / 2, winsize.Y / 2));
-		spr->SetImage(GetRenderTarget(), GetImageFactory());
+		spr = new CSprite(L"c.png", Point(winsize.X / 2, winsize.Y / 2), GetImageFactory(), GetRenderTarget());
 		spr->SetScale(0.7f, 0.7f);
 
-		tex = new CSprite(L"texture.jpg", spr->GetPosition());
-		tex->SetImage(GetRenderTarget(), GetImageFactory());
+		tex = new CSprite(L"texture.jpg", spr->GetPosition(), GetImageFactory(), GetRenderTarget());
 
 		str = L"HelloWorld\nBeep!";
 

@@ -5,10 +5,8 @@
 namespace Xeth {
 	class CSprite {
 	public:
-		CSprite(wchar_t* file_name, Xeth::Point point);
+		CSprite(wchar_t* file_name, Xeth::Point point, IWICImagingFactory* image_factory, ID2D1HwndRenderTarget* render_target);
 		void Release();
-
-		void SetImage(ID2D1RenderTarget * _target, IWICImagingFactory * _factory);
 
 		ID2D1Bitmap* GetBitmap();
 		D2D1_RECT_F GetRect();
@@ -19,6 +17,10 @@ namespace Xeth {
 		Point GetScale();
 		void SetRotation(float _rot);
 		inline float GetRotation() { return m_rotation; }
+		inline wchar_t* GetFileName() { return m_file_name; }
+
+	public:
+		bool IsSet;
 
 	private:
 		ID2D1Bitmap* m_bitmap;
