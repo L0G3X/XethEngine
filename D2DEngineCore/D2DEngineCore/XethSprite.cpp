@@ -48,9 +48,9 @@ void CSprite::SetImage(ID2D1RenderTarget * _target, IWICImagingFactory * _factor
 		throw std::exception("Failed to create Bitmap");
 	}
 
-	decoder->Release();
-	frame_decode->Release();
 	converter->Release();
+	frame_decode->Release();
+	decoder->Release();
 }
 
 ID2D1Bitmap* CSprite::GetBitmap() {
