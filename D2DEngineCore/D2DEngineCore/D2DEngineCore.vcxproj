@@ -82,7 +82,7 @@
     <OutDir>..\..\library</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Compiler\Box2D-master\Box2D\Box2D;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Compiler\Box2D-master\Box2D;$(IncludePath)</IncludePath>
     <ExecutablePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Utilities\bin\x64;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;D:\Compiler\Box2D-master\Box2D\Lib;$(LibraryPath)</LibraryPath>
     <OutDir>..\..\library</OutDir>
@@ -90,7 +90,7 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Compiler\Box2D-master\Box2D\Box2D;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Compiler\Box2D-master\Box2D;$(IncludePath)</IncludePath>
     <ExecutablePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Utilities\bin\x64;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;D:\Compiler\Box2D-master\Box2D\Lib;$(LibraryPath)</LibraryPath>
     <OutDir>..\..\library</OutDir>

@@ -1,8 +1,12 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(373,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
   XethApplication.cpp
 d:\document\_code\direct\engine\xethengine\d2denginecore\d2denginecore\xethapplication.cpp(50): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\document\_code\direct\engine\xethengine\d2denginecore\d2denginecore\xethapplication.cpp(159): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-d:\document\_code\direct\engine\xethengine\d2denginecore\d2denginecore\xethapplication.cpp(191): warning C4244: '인수': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\document\_code\direct\engine\xethengine\d2denginecore\d2denginecore\xethapplication.cpp(132): warning C4244: '인수': 'double'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\document\_code\direct\engine\xethengine\d2denginecore\d2denginecore\xethapplication.cpp(163): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+d:\document\_code\direct\engine\xethengine\d2denginecore\d2denginecore\xethapplication.cpp(195): warning C4244: '인수': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  건너뛰고 있습니다... (관련된 변경 내용 없음)
+  XethSprite.cpp
   D2DEngineCore.vcxproj -> D:\Document\_CODE\Direct\Engine\XethEngine\D2DEngineCore\D2DEngineCore\..\..\library\D2DEngineCore.lib
   XethApplication.h
   XethCore.h

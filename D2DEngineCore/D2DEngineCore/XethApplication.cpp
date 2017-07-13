@@ -118,14 +118,18 @@ void CApplication::Loop() {
 			DispatchMessage(&msg);
 		}
 		else {
+// 			if (m_is_box2d_initialized)
+// 			{
+// 				m_world->Step(16.6f, 6, 2);
+// 			}
 			m_render_target->BeginDraw();
 			auto current = timeGetTime();
-
 			GetRenderTarget()->Clear();
 			Display(current - last);
 
 			last = current;
 			m_render_target->EndDraw();
+			Sleep(16.6);
 		}
 	}
 	CleanAll();
@@ -208,3 +212,15 @@ void Xeth::CApplication::DrawUnRotatedSprite(Xeth::CSprite * spr)
 void Xeth::CApplication::PrintText(wchar_t* msg, D2D1_RECT_F rect, ID2D1SolidColorBrush* brush) {
 	GetRenderTarget()->DrawTextW(msg, static_cast<UINT32>(wcslen(msg)), GetTextFormat(), rect, brush);
 }
+
+// void Xeth::CApplication::InitializeBox2D(Point pos)
+// {	
+// 	m_gravity = new b2Vec2(0.f, -10.f);
+// 	m_world = new b2World(*m_gravity);
+// 
+// 	b2BodyDef groundBodyDef;
+// 	groundBodyDef.position.Set(pos.X, pos.Y);
+// 
+// 	m_groundBody = m_world->CreateBody(&groundBodyDef);
+// 	m_is_box2d_initialized = true;
+// }

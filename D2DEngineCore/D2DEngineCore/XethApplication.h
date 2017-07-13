@@ -26,19 +26,27 @@ namespace Xeth {
 		void DrawUnRotatedSprite(CSprite* spr);
 
 	private:
-		static inline void SetMouseLButtonDownEvent() { MouseLButtonDownEvent = &CApplication::MouseLButtonDown; MouseLDownSet = TRUE; }
-		static inline void SetMouseRButtonDownEvent() { MouseRButtonDownEvent = &CApplication::MouseRButtonDown; MouseRDownSet = TRUE; }
-		static inline void SetMouseLButtonUpEvent() { MouseLButtonUpEvent = &CApplication::MouseLButtonUp; MouseLUpSet = TRUE; }
-		static inline void SetMouseRButtonUpEvent() { MouseRButtonUpEvent = &CApplication::MouseRButtonUp; MouseRUpSet = TRUE; }
+		static inline void SetMouseLButtonDownEvent() { 
+			MouseLButtonDownEvent = &CApplication::MouseLButtonDown; MouseLDownSet = TRUE; 
+		}
+		static inline void SetMouseRButtonDownEvent() { 
+			MouseRButtonDownEvent = &CApplication::MouseRButtonDown; MouseRDownSet = TRUE; 
+		}
+		static inline void SetMouseLButtonUpEvent() { 
+			MouseLButtonUpEvent = &CApplication::MouseLButtonUp; MouseLUpSet = TRUE; 
+		}
+		static inline void SetMouseRButtonUpEvent() { 
+			MouseRButtonUpEvent = &CApplication::MouseRButtonUp; MouseRUpSet = TRUE; 
+		}
 
 	protected:
-		virtual bool Initialize() { return true; }
-		virtual void Display(DWORD delta_time) {	}
-		virtual void Clean() {	}
-		virtual void MouseLButtonDown() {	}
-		virtual void MouseRButtonDown() {	}
-		virtual void MouseLButtonUp() {	}
-		virtual void MouseRButtonUp() {	}
+		virtual bool Initialize()				{ return true; }
+		virtual void Display(DWORD delta_time)	{	}
+		virtual void Clean()					{	}
+		virtual void MouseLButtonDown()			{	}
+		virtual void MouseRButtonDown()			{	}
+		virtual void MouseLButtonUp()			{	}
+		virtual void MouseRButtonUp()			{	}
 
 	protected:
 		void DrawSprite(CSprite* spr);
@@ -46,14 +54,14 @@ namespace Xeth {
 		void PrintText(wchar_t* msg, D2D1_RECT_F rect, ID2D1SolidColorBrush* brush);
 
 	protected:
-		inline ID2D1Factory*			GetFactory() { return m_factory; }
-		inline ID2D1HwndRenderTarget*	GetRenderTarget() { return m_render_target; }
-		inline IWICImagingFactory*		GetImageFactory() { return m_image_factory; }
-		inline IDWriteTextFormat*		GetTextFormat() { return m_write_format; }
-		inline HWND*					GetHWND() { return m_hwnd; }
-		inline Point					GetWinSize() { return m_window_size; }
-		inline Point					GetMousePosition() { return mousePos; }
-		inline bool						GetKeyStatus(WPARAM key) { return keys[key]; }
+		inline ID2D1Factory*			GetFactory()				{ return m_factory; }
+		inline ID2D1HwndRenderTarget*	GetRenderTarget()			{ return m_render_target; }
+		inline IWICImagingFactory*		GetImageFactory()			{ return m_image_factory; }
+		inline IDWriteTextFormat*		GetTextFormat()				{ return m_write_format; }
+		inline HWND*					GetHWND()					{ return m_hwnd; }
+		inline Point					GetWinSize()				{ return m_window_size; }
+		inline Point					GetMousePosition()			{ return mousePos; }
+		inline bool						GetKeyStatus(WPARAM key)	{ return keys[key]; }
 
 	private:
 		typedef void(CApplication::*FuncPTR)(void);
@@ -67,13 +75,13 @@ namespace Xeth {
 		IDWriteFactory*			m_write_factory;
 		IDWriteTextFormat*		m_write_format;
 
-		Point		m_window_size;
-		static bool isRunning;
-		wchar_t		title[256];
+		Point			m_window_size;
+		static bool		isRunning;
+		wchar_t			title[256];
 
 		static CApplication* instance;
 
-		static std::unordered_map<WPARAM, bool> keys;
+		static std::unordered_map<WPARAM, bool>	keys;
 
 		static Point	mousePos;
 		static FuncPTR	MouseLButtonDownEvent;
@@ -85,5 +93,32 @@ namespace Xeth {
 		static BOOL		MouseLUpSet;
 		static BOOL		MouseRUpSet;
 
+// 	private:
+// 		void InitializeBox2D(Point pos);
+// 		inline const bool IsBox2DInitialized() { 
+// 			return static_cast<const bool>(m_is_box2d_initialized); 
+// 		}
+// 		inline b2Vec2* GetBox2DGravity() { 
+// 			if (m_is_box2d_initialized != true)
+// 				throw std::exception("Box2D is not initialized.");
+// 			return m_gravity; 
+// 		}
+// 		inline b2World* GetBox2DWorld() {
+// 			if (m_is_box2d_initialized != true)
+// 				throw std::exception("Box2D is not initialized.");
+// 			return m_world;
+// 		}
+// 		inline b2Body* GetBox2DBody() {
+// 			if (m_is_box2d_initialized != true)
+// 				throw std::exception("Box2D is not initialized.");
+// 			return m_groundBody;
+// 		}
+// 
+// 
+// 		b2Vec2* m_gravity;
+// 		b2World* m_world;
+// 		b2Body* m_groundBody;
+// 
+// 		bool m_is_box2d_initialized;
 	};
 }
