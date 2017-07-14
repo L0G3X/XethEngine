@@ -103,6 +103,9 @@ void CApplication::InitializeWindow() {
 		CleanD2DElements();
 		throw std::exception(e.what());
 	}
+
+	m_time_per_frame = 16.6f;
+	delta_time = 0;
 	
 	m_hinstance = &hInstance;
 	instance = this;
@@ -117,20 +120,15 @@ void CApplication::Loop() {
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		else {
-// 			if (m_is_box2d_initialized)
-// 			{
-// 				m_world->Step(16.6f, 6, 2);
-// 			}
-			m_render_target->BeginDraw();
-			auto current = timeGetTime();
-			GetRenderTarget()->Clear();
-			Display(current - last);
+		m_render_target->BeginDraw();
+		auto current = timeGetTime();
+		delta_time += last - current;
+		GetRenderTarget()->Clear();
+		Display(delta_time);
 
-			last = current;
-			m_render_target->EndDraw();
-			Sleep(16.6);
-		}
+		last = current;
+		m_render_target->EndDraw();
+		//Sleep(m_time_per_frame);
 	}
 	CleanAll();
 }
@@ -203,7 +201,37 @@ void Xeth::CApplication::DrawUnRotatedSprite(Xeth::CSprite * spr)
 	GetRenderTarget()->DrawBitmap(spr->GetBitmap(), spr->GetRect());
 }
 
- void Xeth::CApplication::DrawRotatedSprite(Xeth::CSprite* spr) {
+void Xeth::CApplication::SetMouseLButtonDownEvent() {
+	MouseLButtonDownEvent = &CApplication::MouseLButtonDown; MouseLDownSet = TRUE;
+}
+
+void Xeth::CApplication::SetMouseRButtonDownEvent() {
+	MouseRButtonDownEvent = &CApplication::MouseRButtonDown; MouseRDownSet = TRUE;
+}
+
+void Xeth::CApplication::SetMouseLButtonUpEvent() {
+	MouseLButtonUpEvent = &CApplication::MouseLButtonUp; MouseLUpSet = TRUE;
+}
+
+void Xeth::CApplication::SetMouseRButtonUpEvent() {
+	MouseRButtonUpEvent = &CApplication::MouseRButtonUp; MouseRUpSet = TRUE;
+}
+
+bool Xeth::CApplication::Initialize() { return true; }
+
+void Xeth::CApplication::Display(DWORD delta_time) {	}
+
+void Xeth::CApplication::Clean() {	}
+
+void Xeth::CApplication::MouseLButtonDown() {	}
+
+void Xeth::CApplication::MouseRButtonDown() {	}
+
+void Xeth::CApplication::MouseLButtonUp() {	}
+
+void Xeth::CApplication::MouseRButtonUp() {	}
+
+void Xeth::CApplication::DrawRotatedSprite(Xeth::CSprite* spr) {
 	GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Rotation(spr->GetRotation(), D2D1::Point2F(spr->GetPosition().X, spr->GetPosition().Y)));
 	DrawUnRotatedSprite(spr);
 	GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Rotation(0.f, D2D1::Point2F(GetWinSize().X / 2, GetWinSize().Y / 2)));
@@ -213,14 +241,23 @@ void Xeth::CApplication::PrintText(wchar_t* msg, D2D1_RECT_F rect, ID2D1SolidCol
 	GetRenderTarget()->DrawTextW(msg, static_cast<UINT32>(wcslen(msg)), GetTextFormat(), rect, brush);
 }
 
-// void Xeth::CApplication::InitializeBox2D(Point pos)
-// {	
-// 	m_gravity = new b2Vec2(0.f, -10.f);
-// 	m_world = new b2World(*m_gravity);
-// 
-// 	b2BodyDef groundBodyDef;
-// 	groundBodyDef.position.Set(pos.X, pos.Y);
-// 
-// 	m_groundBody = m_world->CreateBody(&groundBodyDef);
-// 	m_is_box2d_initialized = true;
-// }
+ID2D1Factory * Xeth::CApplication::GetFactory() { return m_factory; }
+
+ID2D1HwndRenderTarget * Xeth::CApplication::GetRenderTarget() { return m_render_target; }
+
+IWICImagingFactory * Xeth::CApplication::GetImageFactory() { return m_image_factory; }
+
+IDWriteTextFormat * Xeth::CApplication::GetTextFormat() { return m_write_format; }
+
+HWND * Xeth::CApplication::GetHWND() { return m_hwnd; }
+
+Point Xeth::CApplication::GetWinSize() { return m_window_size; }
+
+Point Xeth::CApplication::GetMousePosition() { return mousePos; }
+
+bool Xeth::CApplication::GetKeyStatus(WPARAM key) { return keys[key]; }
+
+DWORD Xeth::CApplication::GetTimePerFrame()
+{
+	return m_time_per_frame;
+}

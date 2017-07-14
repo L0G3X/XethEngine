@@ -15,7 +15,6 @@
 #pragma comment(lib, "dwrite.lib")
 #pragma comment(lib, "Strmiids.lib")
 #pragma comment(lib, "Quartz.lib")
-#pragma comment(lib, "Box2D.lib")
 
 #pragma once
 
@@ -35,6 +34,15 @@ namespace Xeth {
 		float Y;
 		Point operator()(float _x, float _y) {
 			return Point(_x, _y); 
+		}
+		Point operator+(DWORD val) {
+			return Point(X + val, Y + val);
+		}
+		Point operator+(int val) {
+			return Point(X + val, Y + val);
+		}
+		Point operator+(float val) {
+			return Point(X + val, Y + val);
 		}
 		Point(float _x, float _y) {
 			this->X = _x;

@@ -30,6 +30,9 @@
     <ClInclude Include="XethMusic.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="XethPhysics.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="XethApplication.cpp">
@@ -39,6 +42,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="XethMusic.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="XethPhysics.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

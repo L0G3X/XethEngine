@@ -2,6 +2,7 @@
 #include <XethApplication.h>
 #include <XethSprite.h>
 #include <XethMusic.h>
+#include <XethPhysics.h>
 
 #pragma once
 #pragma comment(lib, "D2DEngineCore.lib")
@@ -29,6 +30,8 @@ private:
 	Xeth::CSprite* tex;
 
 	Xeth::CMusic* mus;
+
+	Xeth::CPhysics* physics;
 
 	Xeth::CSprite** arr;
 	int idx;

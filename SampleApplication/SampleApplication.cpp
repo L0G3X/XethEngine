@@ -14,9 +14,12 @@ void SampleApplication::Run() {
 
 bool SampleApplication::Initialize() {
 	try {
-		bg = new CSprite(L"bg.jpg", Point(winsize.X / 2, winsize.Y / 2), GetImageFactory(), GetRenderTarget());
+		physics = new CPhysics(Point{ 0, winsize.Y + 10 }, Point{ winsize.X/2, winsize.Y }, Point{ winsize.X, 10.f });
 
-		spr = new CSprite(L"c.png", Point(winsize.X / 2, winsize.Y / 2), GetImageFactory(), GetRenderTarget());
+		bg = new CSprite(L"bg.jpg", Point{ 0, 0 }, GetImageFactory(), GetRenderTarget());
+
+		spr = new CSprite(L"bg.jpg", Point{ 0,0 }, GetImageFactory(), GetRenderTarget(), physics->GetWorld());
+		spr->SetRotation(45.f);
 		spr->SetScale(0.7f, 0.7f);
 
 		tex = new CSprite(L"texture.jpg", spr->GetPosition(), GetImageFactory(), GetRenderTarget());
@@ -72,22 +75,34 @@ void SampleApplication::Display(DWORD delta_time) {
 	catch(std::exception e) {
 		std::cout << e.what() << std::endl;
 	}
-
+	/*
 	if (GetKeyStatus(VK_ESCAPE)) {
 		music_button_click = true;
-	}
+	}*/
 
-	if(rotation >= 360.f) {
+	
+	if(++rotation >= 60.f) {
 	rotation = 0.f;
 	}
-	rotation += delta_time;
 
 	wsprintf(buffer, L"%d", static_cast<UINT32>(rotation));
 	SetFont(idx == 0 ? L"±Ã¼­" : L"D2Coding", 40.f);
 	PrintText(buffer, D2D1::RectF(0, 0, CApplication::GetWinSize().X, CApplication::GetWinSize().Y), brush);
+	
+// 
+// 	arr[idx]->SetPosition(GetMousePosition());
+// 	arr[idx]->SetRotation(rotation);
 
-	arr[idx]->SetPosition(GetMousePosition());
-	arr[idx]->SetRotation(rotation);
+	float timeStep = 1.f / 60.f;
+	int velocity = 1;
+	int position = 1;
+
+	physics->GetWorld()->Step(timeStep, velocity, position);
+	if (arr[idx]->GetBody() != nullptr)
+	{
+		wsprintf(buffer, L"X : %d, Y : %d\nWidth : %d, Height : %d", static_cast<UINT32>(arr[idx]->GetPosition().X), static_cast<UINT32>(arr[idx]->GetPosition().Y), static_cast<UINT32>(arr[idx]->GetBitmap()->GetSize().width), static_cast<UINT32>(arr[idx]->GetBitmap()->GetSize().height));
+		PrintText(buffer, D2D1::RectF(0, winsize.Y / 2, winsize.X, winsize.Y), brush);
+	}
 	DrawSprite(arr[idx]);
 }
 
@@ -98,11 +113,13 @@ void SampleApplication::Clean() {
 	SafeRelease(bg);
 	SafeRelease(mus);
 	SafeRelease(brush);
+
+	SafeDelete(physics);
 }
 
 void SampleApplication::MouseLButtonDown() {
-	idx = 1;
+	//idx = 1;
 }
 void SampleApplication::MouseLButtonUp() {
-	idx = 0;
+	//idx = 0;
 }

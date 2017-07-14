@@ -1,0 +1,13 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(373,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
+  XethSprite.cpp
+d:\document\_code\direct\engine\xethengine\d2denginecore\d2denginecore\xethsprite.cpp(13): warning C4996: 'wcstombs': This function or variable may be unsafe. Consider using wcstombs_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1008): note: 'wcstombs' 선언을 참조하십시오.
+d:\document\_code\direct\engine\xethengine\d2denginecore\d2denginecore\xethsprite.cpp(71): warning C4996: 'wcstombs': This function or variable may be unsafe. Consider using wcstombs_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(1008): note: 'wcstombs' 선언을 참조하십시오.
+  D2DEngineCore.vcxproj -> D:\Document\_CODE\Direct\Engine\XethEngine\D2DEngineCore\D2DEngineCore\..\..\library\x86\D2DEngineCore.lib
+  XethApplication.h
+  XethCore.h
+  XethMusic.h
+  XethPhysics.h
+  XethSprite.h
+          5개 파일이 복사되었습니다.

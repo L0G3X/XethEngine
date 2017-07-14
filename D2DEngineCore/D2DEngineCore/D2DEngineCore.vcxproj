@@ -70,22 +70,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Compiler\Box2D-master\Box2D;$(IncludePath)</IncludePath>
     <ExecutablePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Utilities\bin\x86;$(ExecutablePath)</ExecutablePath>
-    <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;$(LibraryPath)</LibraryPath>
-    <OutDir>..\..\library</OutDir>
+    <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;D:\Compiler\Box2D-master\Box2D\Lib;$(LibraryPath)</LibraryPath>
+    <OutDir>..\..\library\x86</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Compiler\Box2D-master\Box2D;$(IncludePath)</IncludePath>
     <ExecutablePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Utilities\bin\x86;$(ExecutablePath)</ExecutablePath>
-    <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;$(LibraryPath)</LibraryPath>
-    <OutDir>..\..\library</OutDir>
+    <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;D:\Compiler\Box2D-master\Box2D\Lib;$(LibraryPath)</LibraryPath>
+    <OutDir>..\..\library\x86</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Compiler\Box2D-master\Box2D;$(IncludePath)</IncludePath>
     <ExecutablePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Utilities\bin\x64;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;D:\Compiler\Box2D-master\Box2D\Lib;$(LibraryPath)</LibraryPath>
-    <OutDir>..\..\library</OutDir>
+    <OutDir>..\..\library\x64</OutDir>
     <CodeAnalysisRuleSet>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\Rule Sets\NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
@@ -93,7 +93,7 @@
     <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Compiler\Box2D-master\Box2D;$(IncludePath)</IncludePath>
     <ExecutablePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Utilities\bin\x64;$(ExecutablePath)</ExecutablePath>
     <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;D:\Compiler\Box2D-master\Box2D\Lib;$(LibraryPath)</LibraryPath>
-    <OutDir>..\..\library</OutDir>
+    <OutDir>..\..\library\x64</OutDir>
     <CodeAnalysisRuleSet>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\Rule Sets\NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
@@ -173,12 +173,14 @@
   <ItemGroup>
     <ClInclude Include="XethApplication.h" />
     <ClInclude Include="XethMusic.h" />
+    <ClInclude Include="XethPhysics.h" />
     <ClInclude Include="XethSprite.h" />
     <ClInclude Include="XethCore.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="XethApplication.cpp" />
     <ClCompile Include="XethMusic.cpp" />
+    <ClCompile Include="XethPhysics.cpp" />
     <ClCompile Include="XethSprite.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
